@@ -3,96 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brillo & Estilo</title>
+  <title>Belleza Studio</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Tipografía elegante -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
-    <div class="logo">
-      <h1>Brillo & Estilo</h1>
-      <p>Tu cabello, nuestra pasión</p>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#tienda">Tienda</a></li>
-        <li><a href="#equipo">Nuestro Equipo</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
-    </nav>
+    <h1 class="studio-title">Belleza Studio</h1>
   </header>
 
-  <section class="hero">
-    <h2>Realza tu belleza natural</h2>
-    <p>Déjate mimar por manos expertas en peluquería y cuidado capilar.</p>
-    <button class="btn-hero">Reserva tu cita</button>
-  </section>
+  <main>
+    <!-- Sección de contacto -->
+    <section id="contact-section">
+      <h2 data-lang="contact">Contacto</h2>
+      <form id="contact-form">
+        <input type="text" name="name" placeholder="Nombre" required>
+        <input type="email" name="email" placeholder="Correo" required>
+        <textarea name="message" placeholder="Mensaje" required></textarea>
+        <button type="submit" data-lang="send">Enviar</button>
+      </form>
+    </section>
 
-  <section id="servicios" class="servicios">
-    <h3>Nuestros Servicios</h3>
-    <div class="servicios-grid">
-      <div class="servicio-card">
-        <h4>Corte y Peinado</h4>
-        <p>Estilos personalizados que se adaptan a ti.</p>
-      </div>
-      <div class="servicio-card">
-        <h4>Tintes y Mechas</h4>
-        <p>Colores vibrantes y naturales con productos de alta calidad.</p>
-      </div>
-      <div class="servicio-card">
-        <h4>Tratamientos</h4>
-        <p>Hidratación, reparación y cuidado profundo del cabello.</p>
-      </div>
-    </div>
-  </section>
+    <!-- Sección de reservas -->
+    <section id="booking-section">
+      <h2 data-lang="book">Reserva tu cita</h2>
+      <form id="booking-form">
+        <input type="text" name="name" placeholder="Nombre" required>
+        <input type="email" name="email" placeholder="Correo" required>
+        <input type="tel" name="phone" placeholder="Teléfono" required>
+        <input type="text" name="service" placeholder="Servicio" required>
+        <input type="date" name="date" required>
+        <input type="time" name="time" required>
+        <button type="submit" data-lang="bookNow">Reservar</button>
+      </form>
+    </section>
+  </main>
 
-  <section id="tienda" class="tienda">
-    <h3>Nuestra Tienda</h3>
-    <div class="productos-grid">
-      <div class="producto-card">
-        <img src="img/shampoo.jpg" alt="Champú nutritivo">
-        <h4>Champú Nutritivo</h4>
-        <p>8,99 €</p>
-      </div>
-      <div class="producto-card">
-        <img src="img/tinte.jpg" alt="Tinte natural">
-        <h4>Tinte Natural</h4>
-        <p>12,50 €</p>
-      </div>
-      <div class="producto-card">
-        <img src="img/mascarilla.jpg" alt="Mascarilla reparadora">
-        <h4>Mascarilla Reparadora</h4>
-        <p>10,75 €</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="equipo" class="equipo">
-    <h3>Nuestro Equipo</h3>
-    <div class="equipo-grid">
-      <div class="miembro">
-        <img src="img/ana.jpg" alt="Ana">
-        <h4>Ana</h4>
-        <p>Especialista en color y tratamientos.</p>
-      </div>
-      <div class="miembro">
-        <img src="img/angela.jpg" alt="Ángela">
-        <h4>Ángela</h4>
-        <p>Experta en cortes modernos y estilismo.</p>
-      </div>
-    </div>
-  </section>
-
-  <footer id="contacto">
-    <h3>Contáctanos</h3>
-    <p>📍 Calle del Sol, 12 · Marbella</p>
-    <p>📞 600 123 456</p>
-    <p>📧 contacto@brilloyestilo.com</p>
-    <p class="copy">© 2025 Brillo & Estilo · Todos los derechos reservados</p>
+  <footer>
+    <p>&copy; 2025 Belleza Studio</p>
   </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>
