@@ -1,208 +1,57 @@
-/* Fuentes principales */
 body {
-  margin: 0;
-  font-family: 'Open Sans', sans-serif;
-  color: #333;
-  background-color: #fffafc;
-}
-
-/* Encabezado */
-header {
-  background-color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 3rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.logo h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
-  color: #b37baa;
-  margin: 0;
-}
-
-.logo p {
-  font-size: 0.95rem;
-  margin: 0;
-  color: #555;
-  letter-spacing: 0.5px;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1.8rem;
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-}
-
-nav a {
-  text-decoration: none;
+  background: #fff7f3;
   color: #333;
-  font-weight: 500;
-  transition: color 0.3s ease;
 }
 
-nav a:hover {
-  color: #b37baa;
-}
-
-/* Hero */
-.hero {
-  background: linear-gradient(rgba(179, 123, 170, 0.4), rgba(0,0,0,0.3)), url('img/hero.jpg') center/cover no-repeat;
-  color: white;
+header {
+  background: #f5d1d1;
   text-align: center;
-  padding: 8rem 2rem;
+  padding: 2rem;
 }
 
-.hero h2 {
-  font-family: 'Playfair Display', serif;
+.studio-title {
+  font-family: 'Georgia', serif;
   font-size: 3rem;
+  color: #b33a3a;
+}
+
+main {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form input, form textarea, form button {
   margin-bottom: 1rem;
+  padding: 0.8rem;
+  font-size: 1rem;
 }
 
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
-
-.btn-hero {
-  background-color: #b37baa;
+form button {
+  background: #b33a3a;
   color: white;
   border: none;
-  padding: 0.9rem 2rem;
-  border-radius: 30px;
   cursor: pointer;
-  font-weight: 600;
-  transition: background 0.3s ease;
 }
 
-.btn-hero:hover {
-  background-color: #9b5d96;
+form button:hover {
+  background: #912828;
 }
 
-/* Servicios */
-.servicios {
-  text-align: center;
-  padding: 4rem 2rem;
-}
-
-.servicios h3 {
-  font-family: 'Playfair Display', serif;
-  color: #b37baa;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-
-.servicios-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.servicio-card {
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 15px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-}
-
-.servicio-card:hover {
-  transform: translateY(-5px);
-}
-
-/* Tienda */
-.tienda {
-  background-color: #fff2f8;
-  text-align: center;
-  padding: 4rem 2rem;
-}
-
-.tienda h3 {
-  font-family: 'Playfair Display', serif;
-  color: #b37baa;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-
-.productos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-}
-
-.producto-card {
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  padding: 1rem;
-  transition: transform 0.3s ease;
-}
-
-.producto-card:hover {
-  transform: translateY(-5px);
-}
-
-.producto-card img {
-  width: 100%;
-  border-radius: 15px;
-}
-
-.producto-card h4 {
-  margin: 1rem 0 0.5rem;
-  color: #b37baa;
-}
-
-/* Equipo */
-.equipo {
-  text-align: center;
-  padding: 4rem 2rem;
-}
-
-.equipo h3 {
-  font-family: 'Playfair Display', serif;
-  color: #b37baa;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-
-.equipo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
-}
-
-.miembro img {
-  width: 100%;
-  border-radius: 15px;
-}
-
-.miembro h4 {
-  color: #b37baa;
-  margin-top: 1rem;
-}
-
-/* Footer */
-footer {
-  background-color: #b37baa;
-  color: white;
-  text-align: center;
-  padding: 3rem 2rem;
-}
-
-footer h3 {
-  font-family: 'Playfair Display', serif;
-  margin-bottom: 1rem;
-}
-
-footer .copy {
-  margin-top: 1.5rem;
-  font-size: 0.9rem;
-  opacity: 0.8;
+@media (max-width: 600px) {
+  .studio-title {
+    font-size: 2rem;
+  }
 }
