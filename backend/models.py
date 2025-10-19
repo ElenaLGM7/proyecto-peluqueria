@@ -1,30 +1,22 @@
-from database import get_connection
+# backend/app/models.py
+from sqlmodel import SQLModel, Field
+from typing import Optional
+from datetime import datetime
 
-def init_db():
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS contacts (
-            id SERIAL PRIMARY KEY,
-            name VARCHAR(100),
-            email VARCHAR(100),
-            message TEXT
-        );
-    """)
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS bookings (
-            id SERIAL PRIMARY KEY,
-            name VARCHAR(100),
-            email VARCHAR(100),
-            phone VARCHAR(20),
-            service VARCHAR(100),
-            date DATE,
-            time TIME
-        );
-    """)
-    conn.commit()
-    cursor.close()
-    conn.close()
+class Booking(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str
+    phone: str
+    email: Optional[str] = None
+    service: str
+    date: str  # YYYY-MM-DD
+    time: str  # HH:MM
+    notes: Optional[str] = None
+    created_at: datetime = Field(default_factory=datetime.utcnow)
 
-# Inicializar DB al arrancar
-init_db()
+class Contact(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str
+    email: str
+    message: str
+    created_at: datetime = Field(default_factory=datetime.utcnow)
