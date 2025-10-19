@@ -1,5 +1,7 @@
 fastapi
-uvicorn
-psycopg2-binary
+uvicorn[standard]
+sqlmodel
 python-dotenv
-pydantic
+psycopg-binary
+aiofiles
+python-multipart
