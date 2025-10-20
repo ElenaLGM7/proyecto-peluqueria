@@ -26,18 +26,19 @@ form.addEventListener('submit', async (e) => {
 
     const data = await res.json();
     mensaje.style.display = "block";
+    mensaje.style.background = "#c0ffc0";
+    mensaje.style.color = "#006400";
     mensaje.textContent = data.message;
     form.reset();
 
-    // Oculta el mensaje tras 3 segundos
     setTimeout(() => {
       mensaje.style.display = "none";
     }, 3000);
 
   } catch (error) {
     mensaje.style.display = "block";
-    mensaje.textContent = "No se pudo conectar con el servidor. Intenta más tarde.";
     mensaje.style.background = "#ffc0c0";
     mensaje.style.color = "#800000";
+    mensaje.textContent = "No se pudo conectar con el servidor. Intenta más tarde.";
   }
 });
