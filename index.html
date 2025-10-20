@@ -1,45 +1,127 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Belleza Studio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Brillo y Estilo - Salón de Belleza</title>
+
+  <!-- Playfair para títulos (beauty studio) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1 class="studio-title">Belleza Studio</h1>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="brand">Brillo y Estilo</h1>
+      <nav class="nav">
+        <a href="#services">Servicios</a>
+        <a href="#gallery">Galería</a>
+        <a href="#booking">Reserva</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <!-- Sección de contacto -->
-    <section id="contact-section">
-      <h2 data-lang="contact">Contacto</h2>
-      <form id="contact-form">
-        <input type="text" name="name" placeholder="Nombre" required>
-        <input type="email" name="email" placeholder="Correo" required>
-        <textarea name="message" placeholder="Mensaje" required></textarea>
-        <button type="submit" data-lang="send">Enviar</button>
-      </form>
+    <section id="hero" class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h2>Bienvenida a Brillo y Estilo</h2>
+          <p>Profesionales del cuidado capilar. Reserva tu cita online en segundos.</p>
+        </div>
+        <div class="hero-media">
+          <!-- si tienes imagen, pégala en /frontend/img/hero.jpg -->
+          <img src="img/hero.jpg" alt="Salón Brillo y Estilo">
+        </div>
+      </div>
     </section>
 
-    <!-- Sección de reservas -->
-    <section id="booking-section">
-      <h2 data-lang="book">Reserva tu cita</h2>
-      <form id="booking-form">
-        <input type="text" name="name" placeholder="Nombre" required>
-        <input type="email" name="email" placeholder="Correo" required>
-        <input type="tel" name="phone" placeholder="Teléfono" required>
-        <input type="text" name="service" placeholder="Servicio" required>
-        <input type="date" name="date" required>
-        <input type="time" name="time" required>
-        <button type="submit" data-lang="bookNow">Reservar</button>
-      </form>
+    <section id="services" class="section services">
+      <div class="container">
+        <h3>Nuestros servicios</h3>
+        <ul class="services-list">
+          <li>Corte — 25 €</li>
+          <li>Tinte — 50 €</li>
+          <li>Mechas — 80 €</li>
+          <li>Peinado — 35 €</li>
+        </ul>
+      </div>
     </section>
+
+    <section id="gallery" class="section gallery">
+      <div class="container">
+        <h3>Galería</h3>
+        <div class="grid-gallery">
+          <img src="img/1.jpg" alt="Peinado 1">
+          <img src="img/2.jpg" alt="Peinado 2">
+          <img src="img/3.jpg" alt="Peinado 3">
+        </div>
+      </div>
+    </section>
+
+    <!-- ==== RESERVAS (integrada en la misma página) ==== -->
+    <section id="booking" class="section booking">
+      <div class="container">
+        <h3>Reserva tu cita</h3>
+
+        <div class="booking-card">
+          <form id="form-cita" class="booking-form" autocomplete="off">
+            <div class="row">
+              <label>Nombre*</label>
+              <input name="name" type="text" required />
+            </div>
+
+            <div class="row">
+              <label>Teléfono*</label>
+              <input name="phone" type="tel" required />
+            </div>
+
+            <div class="row">
+              <label>Correo</label>
+              <input name="email" type="email" />
+            </div>
+
+            <div class="row">
+              <label>Servicio*</label>
+              <select name="service" id="serviceSelect" required>
+                <!-- Se rellena desde main.js -->
+              </select>
+            </div>
+
+            <div class="row-inline">
+              <div class="row" style="flex:1;">
+                <label>Fecha*</label>
+                <input name="date" id="dateInput" type="date" required />
+              </div>
+              <div class="row" style="flex:1;">
+                <label>Hora*</label>
+                <select name="time" id="timeSelect" required>
+                  <option value="">Selecciona fecha primero</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <label>Notas (opcional)</label>
+              <textarea name="notes" rows="3" placeholder="Alergias, preferencia de peluquero..."></textarea>
+            </div>
+
+            <div class="row">
+              <button id="btnSubmit" type="submit" class="btn">Reservar cita</button>
+            </div>
+
+            <p id="form-msg" class="form-msg" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- ==== /RESERVAS ==== -->
   </main>
 
-  <footer>
-    <p>&copy; 2025 Belleza Studio</p>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Brillo y Estilo — Todos los derechos reservados</p>
+    </div>
   </footer>
 
   <script src="main.js"></script>
