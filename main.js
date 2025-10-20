@@ -7,7 +7,7 @@
 */
 
 // ---- CONFIG ----
-const API_BASE = window.API_BASE || "https://YOUR_BACKEND_URL"; // <--- cambia aquí por tu URL real
+const API_BASE = window.API_BASE || "https://railway.com/project/e65ebd44-121f-4095-a54a-74f78aadb3fe/service/85caec87-4abb-4d35-9845-6d8fb5e9d364?environmentId=be7b2b0f-ad44-4392-ab3c-3f3ee9a57cb4&id=d89b3702-88d7-44fc-9cb5-61374c00fe6e"; // <--- cambia aquí por tu URL real
 
 // Servicios fijos (coincidir con backend)
 const SERVICES = [
