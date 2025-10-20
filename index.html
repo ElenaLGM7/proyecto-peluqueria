@@ -3,124 +3,172 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Brillo y Estilo - Salón de Belleza</title>
+  <title>Brillo y Estilo — Salón de Belleza</title>
 
-  <!-- Playfair para títulos (beauty studio) -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Tipografía elegante para títulos -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
-    <div class="container">
-      <h1 class="brand">Brillo y Estilo</h1>
+    <div class="container header-inner">
+      <div class="brand-wrap">
+        <h1 class="brand">Brillo &amp; Estilo</h1>
+        <p class="tagline">Tu cabello, nuestra pasión</p>
+      </div>
       <nav class="nav">
         <a href="#services">Servicios</a>
         <a href="#gallery">Galería</a>
         <a href="#booking">Reserva</a>
+        <a href="#contact">Contacto</a>
       </nav>
     </div>
   </header>
 
   <main>
+    <!-- HERO -->
     <section id="hero" class="hero">
       <div class="container hero-inner">
         <div class="hero-text">
-          <h2>Bienvenida a Brillo y Estilo</h2>
-          <p>Profesionales del cuidado capilar. Reserva tu cita online en segundos.</p>
+          <h2>Bienvenida a Brillo &amp; Estilo</h2>
+          <p>Profesionales dedicadas a resaltar tu estilo. Reserva online en segundos.</p>
+          <a class="cta" href="#booking">Reserva tu cita</a>
         </div>
         <div class="hero-media">
-          <!-- si tienes imagen, pégala en /frontend/img/hero.jpg -->
-          <img src="img/hero.jpg" alt="Salón Brillo y Estilo">
+          <img src="img/hero.jpg" alt="Interior salón Brillo y Estilo">
         </div>
       </div>
     </section>
 
+    <!-- SERVICES -->
     <section id="services" class="section services">
       <div class="container">
         <h3>Nuestros servicios</h3>
-        <ul class="services-list">
-          <li>Corte — 25 €</li>
-          <li>Tinte — 50 €</li>
-          <li>Mechas — 80 €</li>
-          <li>Peinado — 35 €</li>
-        </ul>
+        <div class="services-grid">
+          <article class="card">
+            <img src="img/corte.jpg" alt="Corte profesional">
+            <h4>Corte</h4>
+            <p>Estilos personalizados y asesoramiento.</p>
+            <span class="price">25 €</span>
+          </article>
+
+          <article class="card">
+            <img src="img/tinte.jpg" alt="Tinte profesional">
+            <h4>Tinte</h4>
+            <p>Coloración con productos de calidad.</p>
+            <span class="price">50 €</span>
+          </article>
+
+          <article class="card">
+            <img src="img/mechas.jpg" alt="Mechas">
+            <h4>Mechas</h4>
+            <p>Mechas y balayage con técnica profesional.</p>
+            <span class="price">80 €</span>
+          </article>
+
+          <article class="card">
+            <img src="img/peinado.jpg" alt="Peinado">
+            <h4>Peinado</h4>
+            <p>Peinados para eventos y uso diario.</p>
+            <span class="price">35 €</span>
+          </article>
+        </div>
       </div>
     </section>
 
+    <!-- GALLERY -->
     <section id="gallery" class="section gallery">
       <div class="container">
         <h3>Galería</h3>
         <div class="grid-gallery">
-          <img src="img/1.jpg" alt="Peinado 1">
-          <img src="img/2.jpg" alt="Peinado 2">
-          <img src="img/3.jpg" alt="Peinado 3">
+          <img src="img/gallery1.jpg" alt="Ejemplo 1">
+          <img src="img/gallery2.jpg" alt="Ejemplo 2">
+          <img src="img/gallery3.jpg" alt="Ejemplo 3">
         </div>
       </div>
     </section>
 
-    <!-- ==== RESERVAS (integrada en la misma página) ==== -->
+    <!-- BOOKING (sección aparte, visible) -->
     <section id="booking" class="section booking">
       <div class="container">
         <h3>Reserva tu cita</h3>
 
-        <div class="booking-card">
-          <form id="form-cita" class="booking-form" autocomplete="off">
-            <div class="row">
-              <label>Nombre*</label>
-              <input name="name" type="text" required />
+        <div class="booking-grid">
+          <div class="booking-info">
+            <p>Elige servicio, fecha y hora. Te mostraremos los huecos disponibles.</p>
+            <ul class="bullet-list">
+              <li>Horario: Lun–Sáb 10:00–19:00</li>
+              <li>Intervalos: 30 minutos</li>
+              <li>Si necesitas cambiar la cita, contacta con nosotras</li>
+            </ul>
+          </div>
+
+          <form id="form-cita" class="booking-form" autocomplete="off" aria-live="polite">
+            <div class="field">
+              <label for="name">Nombre *</label>
+              <input id="name" name="name" type="text" required />
             </div>
 
-            <div class="row">
-              <label>Teléfono*</label>
-              <input name="phone" type="tel" required />
+            <div class="field">
+              <label for="phone">Teléfono *</label>
+              <input id="phone" name="phone" type="tel" required />
             </div>
 
-            <div class="row">
-              <label>Correo</label>
-              <input name="email" type="email" />
+            <div class="field">
+              <label for="email">Correo</label>
+              <input id="email" name="email" type="email" />
             </div>
 
-            <div class="row">
-              <label>Servicio*</label>
-              <select name="service" id="serviceSelect" required>
-                <!-- Se rellena desde main.js -->
-              </select>
+            <div class="field">
+              <label for="serviceSelect">Servicio *</label>
+              <select id="serviceSelect" name="service" required></select>
             </div>
 
             <div class="row-inline">
-              <div class="row" style="flex:1;">
-                <label>Fecha*</label>
-                <input name="date" id="dateInput" type="date" required />
+              <div class="field">
+                <label for="dateInput">Fecha *</label>
+                <input id="dateInput" name="date" type="date" required />
               </div>
-              <div class="row" style="flex:1;">
-                <label>Hora*</label>
-                <select name="time" id="timeSelect" required>
+              <div class="field">
+                <label for="timeSelect">Hora *</label>
+                <select id="timeSelect" name="time" required>
                   <option value="">Selecciona fecha primero</option>
                 </select>
               </div>
             </div>
 
-            <div class="row">
-              <label>Notas (opcional)</label>
-              <textarea name="notes" rows="3" placeholder="Alergias, preferencia de peluquero..."></textarea>
+            <div class="field">
+              <label for="notes">Notas (opcional)</label>
+              <textarea id="notes" name="notes" rows="3" placeholder="Alergias, preferencia de estilista..."></textarea>
             </div>
 
-            <div class="row">
-              <button id="btnSubmit" type="submit" class="btn">Reservar cita</button>
+            <button id="btnSubmit" type="submit" class="btn">Reservar cita</button>
+
+            <!-- CAJITA ELEGANTE DE CONFIRMACIÓN -->
+            <div id="confirmBox" class="confirm-box" role="status" aria-live="polite" hidden>
+              <p id="confirmText"></p>
+              <button id="confirmClose" class="btn ghost">Aceptar</button>
             </div>
 
-            <p id="form-msg" class="form-msg" aria-live="polite"></p>
+            <p id="form-msg" class="form-msg" aria-hidden="true"></p>
           </form>
         </div>
       </div>
     </section>
-    <!-- ==== /RESERVAS ==== -->
+
+    <!-- CONTACT -->
+    <section id="contact" class="section contact">
+      <div class="container">
+        <h3>Contacto</h3>
+        <p>Tel: 600 000 000 · Calle de la Luz, 12</p>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>© <span id="year"></span> Brillo y Estilo — Todos los derechos reservados</p>
+      <p>© <span id="year"></span> Brillo &amp; Estilo</p>
     </div>
   </footer>
 
