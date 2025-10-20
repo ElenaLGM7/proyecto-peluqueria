@@ -1,5 +1,11 @@
+# Python
 __pycache__/
 *.pyc
-.env
-database.db
 .venv/
+.env
+
+# Base de datos local (si la tuvieras)
+database.db
+
+# Otros
+*.log
