@@ -1,177 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Brillo y Estilo — Salón de Belleza</title>
-
-  <!-- Tipografía elegante para títulos -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brillo y Estilo - Demo Peluquería</title>
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand-wrap">
-        <h1 class="brand">Brillo &amp; Estilo</h1>
-        <p class="tagline">Tu cabello, nuestra pasión</p>
-      </div>
-      <nav class="nav">
-        <a href="#services">Servicios</a>
-        <a href="#gallery">Galería</a>
-        <a href="#booking">Reserva</a>
-        <a href="#contact">Contacto</a>
-      </nav>
-    </div>
-  </header>
 
-  <main>
-    <!-- HERO -->
-    <section id="hero" class="hero">
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <h2>Bienvenida a Brillo &amp; Estilo</h2>
-          <p>Profesionales dedicadas a resaltar tu estilo. Reserva online en segundos.</p>
-          <a class="cta" href="#booking">Reserva tu cita</a>
-        </div>
-        <div class="hero-media">
-          <img src="Frontend/hair salon.jpg" alt="Interior salón Brillo y Estilo">
-        </div>
-      </div>
-    </section>
+<header>
+  <h1 class="titulo">Brillo y Estilo</h1>
+</header>
 
-    <!-- SERVICES -->
-    <section id="services" class="section services">
-      <div class="container">
-        <h3>Nuestros servicios</h3>
-        <div class="services-grid">
-          <article class="card">
-            <img src="Frontend/corte pelo.jpg" alt="Corte profesional">
-            <h4>Corte</h4>
-            <p>Estilos personalizados y asesoramiento.</p>
-            <span class="price">25 €</span>
-          </article>
+<!-- Galería de trabajos -->
+<section class="galeria">
+  <h2>Nuestros trabajos</h2>
+  <div class="imagenes">
+    <img src="https://via.placeholder.com/300x200?text=Corte+de+pelo" alt="Corte">
+    <img src="https://via.placeholder.com/300x200?text=Color+de+pelo" alt="Color">
+    <img src="https://via.placeholder.com/300x200?text=Peinado" alt="Peinado">
+  </div>
+</section>
 
-          <article class="card">
-            <img src="Frontend/tinte pelo.jpg" alt="Tinte profesional">
-            <h4>Tinte</h4>
-            <p>Coloración con productos de calidad.</p>
-            <span class="price">50 €</span>
-          </article>
+<!-- Formulario de reserva integrado -->
+<section class="formulario-reserva">
+  <h2>Reserva tu cita</h2>
+  <form id="reservaForm">
+    <input type="text" name="nombre" placeholder="Nombre" required>
+    <input type="email" name="correo" placeholder="Correo" required>
+    <input type="tel" name="telefono" placeholder="Teléfono">
+    <input type="date" name="fecha" required>
+    <select name="hora" required>
+      <option value="">Selecciona hora</option>
+      <option value="10:00">10:00</option>
+      <option value="11:00">11:00</option>
+      <option value="12:00">12:00</option>
+      <option value="13:00">13:00</option>
+      <option value="16:00">16:00</option>
+      <option value="17:00">17:00</option>
+      <option value="18:00">18:00</option>
+    </select>
+    <select name="servicio" required>
+      <option value="">Selecciona servicio</option>
+      <option value="Corte">Corte</option>
+      <option value="Color">Color</option>
+      <option value="Peinado">Peinado</option>
+    </select>
+    <button type="submit">Reservar</button>
+  </form>
+  <div id="mensajeConfirmacion" class="mensaje"></div>
+</section>
 
-          <article class="card">
-            <img src="Frontend/tinte pelo.jpg" alt="Mechas">
-            <h4>Mechas</h4>
-            <p>Mechas y balayage con técnica profesional.</p>
-            <span class="price">80 €</span>
-          </article>
-
-          <article class="card">
-            <img src="img/peinado.jpg" alt="Peinado">
-            <h4>Peinado</h4>
-            <p>Peinados para eventos y uso diario.</p>
-            <span class="price">35 €</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- GALLERY -->
-    <section id="gallery" class="section gallery">
-      <div class="container">
-        <h3>Galería</h3>
-        <div class="grid-gallery">
-          <img src="img/gallery1.jpg" alt="Ejemplo 1">
-          <img src="img/gallery2.jpg" alt="Ejemplo 2">
-          <img src="img/gallery3.jpg" alt="Ejemplo 3">
-        </div>
-      </div>
-    </section>
-
-    <!-- BOOKING (sección aparte, visible) -->
-    <section id="booking" class="section booking">
-      <div class="container">
-        <h3>Reserva tu cita</h3>
-
-        <div class="booking-grid">
-          <div class="booking-info">
-            <p>Elige servicio, fecha y hora. Te mostraremos los huecos disponibles.</p>
-            <ul class="bullet-list">
-              <li>Horario: Lun–Sáb 10:00–19:00</li>
-              <li>Intervalos: 30 minutos</li>
-              <li>Si necesitas cambiar la cita, contacta con nosotras</li>
-            </ul>
-          </div>
-
-          <form id="form-cita" class="booking-form" autocomplete="off" aria-live="polite">
-            <div class="field">
-              <label for="name">Nombre *</label>
-              <input id="name" name="name" type="text" required />
-            </div>
-
-            <div class="field">
-              <label for="phone">Teléfono *</label>
-              <input id="phone" name="phone" type="tel" required />
-            </div>
-
-            <div class="field">
-              <label for="email">Correo</label>
-              <input id="email" name="email" type="email" />
-            </div>
-
-            <div class="field">
-              <label for="serviceSelect">Servicio *</label>
-              <select id="serviceSelect" name="service" required></select>
-            </div>
-
-            <div class="row-inline">
-              <div class="field">
-                <label for="dateInput">Fecha *</label>
-                <input id="dateInput" name="date" type="date" required />
-              </div>
-              <div class="field">
-                <label for="timeSelect">Hora *</label>
-                <select id="timeSelect" name="time" required>
-                  <option value="">Selecciona fecha primero</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="notes">Notas (opcional)</label>
-              <textarea id="notes" name="notes" rows="3" placeholder="Alergias, preferencia de estilista..."></textarea>
-            </div>
-
-            <button id="btnSubmit" type="submit" class="btn">Reservar cita</button>
-
-            <!-- CAJITA ELEGANTE DE CONFIRMACIÓN -->
-            <div id="confirmBox" class="confirm-box" role="status" aria-live="polite" hidden>
-              <p id="confirmText"></p>
-              <button id="confirmClose" class="btn ghost">Aceptar</button>
-            </div>
-
-            <p id="form-msg" class="form-msg" aria-hidden="true"></p>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section contact">
-      <div class="container">
-        <h3>Contacto</h3>
-        <p>Tel: 600 000 000 · Calle de la Luz, 12</p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <p>© <span id="year"></span> Brillo &amp; Estilo</p>
-    </div>
-  </footer>
-
-  <script src="main.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
+
