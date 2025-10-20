@@ -1,21 +1,19 @@
-# backend/app/main.py
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from sqlmodel import Session
 from dotenv import load_dotenv
 import os
+from datetime import datetime
 
 load_dotenv()
 
 from .database import create_db_and_tables, engine
-from .models import Booking, Contact
-from .schemas import BookingCreate, BookingRead, ContactCreate, ContactRead
-from .crud import create_booking, list_bookings, create_contact
-from .utils import try_send_email
+from .models import Booking
+from .schemas import BookingCreate, BookingRead
+from .crud import create_booking, list_bookings_by_date
 
-app = FastAPI(title="Belleza Studio - API")
+app = FastAPI(title="Brillo y Estilo API")
 
-# CORS: permitir el frontend (env FRONTEND_URL) o "*" para demo
 FRONTEND_URL = os.getenv("FRONTEND_URL") or "*"
 allow_origins = [FRONTEND_URL] if FRONTEND_URL != "*" else ["*"]
 
@@ -27,41 +25,61 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# mismos servicios/duración que en frontend
+SERVICES = {
+    "corte": 30,
+    "tinte": 60,
+    "mechas": 90,
+    "peinado": 45
+}
+
 @app.on_event("startup")
 def on_startup():
-    # crear tablas si no existen
     create_db_and_tables()
 
-@app.post("/api/bookings", response_model=BookingRead)
+def minutes_from_hhmm(hhmm: str):
+    h, m = map(int, hhmm.split(":"))
+    return h*60 + m
+
+def overlaps(start_a: int, dur_a: int, start_b: int, dur_b: int):
+    end_a = start_a + dur_a
+    end_b = start_b + dur_b
+    return (start_a < end_b) and (start_b < end_a)
+
+@app.post("/api/bookings", response_model=BookingRead, status_code=201)
 def api_create_booking(payload: BookingCreate):
-    # comprobar solapamientos básicos (opcional: mejorar)
-    # guardamos en DB
-    booking = Booking(**payload.dict())
-    saved = create_booking(booking)
+    # basic validation of service
+    if payload.service not in SERVICES:
+        raise HTTPException(status_code=400, detail="Servicio no válido")
 
-    # intentar notificar al propietario (si SMTP configurado)
-    owner_email = os.getenv("FROM_EMAIL") or None
-    if owner_email:
-        subject = f"Nueva reserva: {saved.name}"
-        body = f"Reserva: {saved.service} - {saved.date} {saved.time}\nTel: {saved.phone}\nEmail: {saved.email}\nNotas: {saved.notes}"
-        try_send_email(subject, body, owner_email)
+    # check date format
+    try:
+        datetime.strptime(payload.date, "%Y-%m-%d")
+        datetime.strptime(payload.time, "%H:%M")
+    except Exception:
+        raise HTTPException(status_code=400, detail="Formato de fecha/hora incorrecto")
 
-    return saved
+    with Session(engine) as session:
+        # fetch existing bookings for that date
+        existing = list_bookings_by_date(session, payload.date)
+        start_new = minutes_from_hhmm(payload.time)
+        dur_new = SERVICES[payload.service]
 
-@app.get("/api/bookings", response_model=list[BookingRead])
-def api_list_bookings(limit: int = 200):
-    return list_bookings(limit=limit)
+        # check overlaps
+        for b in existing:
+            start_b = minutes_from_hhmm(b.time)
+            dur_b = SERVICES.get(b.service, 60)
+            if overlaps(start_new, dur_new, start_b, dur_b):
+                # conflict
+                raise HTTPException(status_code=409, detail="Horario ya ocupado")
 
-@app.post("/api/contact", response_model=ContactRead)
-def api_create_contact(payload: ContactCreate):
-    contact = Contact(**payload.dict())
-    saved = create_contact(contact)
+        # create booking
+        booking = Booking(**payload.dict())
+        saved = create_booking(session, booking)
+        return saved
 
-    # notificar al propietario si hay email configurado
-    owner_email = os.getenv("FROM_EMAIL") or None
-    if owner_email:
-        subject = f"Nuevo mensaje web de {saved.name}"
-        body = f"De: {saved.name} <{saved.email}>\n\n{saved.message}"
-        try_send_email(subject, body, owner_email)
-
-    return saved
+@app.get("/api/bookings")
+def api_get_bookings(date: str):
+    # expects query param date=YYYY-MM-DD
+    with Session(engine) as session:
+        return list_bookings_by_date(session, date)
