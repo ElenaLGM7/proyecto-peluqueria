@@ -1,57 +1,53 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #fff7f3;
-  color: #333;
+:root{
+  --bg: #fff7f3;
+  --card: #ffffff;
+  --accent: #b37baa;
+  --accent-dark: #9b5d96;
+  --muted: #6b6b6b;
+  --container: 1100px;
+  --radius: 12px;
 }
 
-header {
-  background: #f5d1d1;
-  text-align: center;
-  padding: 2rem;
+*{box-sizing:border-box}
+body{
+  margin:0; font-family: 'Playfair Display', serif; background:var(--bg); color:#222;
 }
+.container{ max-width:var(--container); margin:0 auto; padding:0 1rem; }
 
-.studio-title {
-  font-family: 'Georgia', serif;
-  font-size: 3rem;
-  color: #b33a3a;
+.site-header{ background:var(--card); padding:1rem 0; box-shadow:0 6px 18px rgba(0,0,0,0.05); }
+.brand{ margin:0; color:var(--accent); font-size:1.8rem; text-align:center; }
+.nav{ display:flex; justify-content:center; gap:1.2rem; margin-top:.4rem; }
+.nav a{ text-decoration:none; color:#333; font-weight:600; }
+
+/* hero */
+.hero{ padding:3rem 0; display:flex; align-items:center; gap:2rem; }
+.hero-inner{ display:flex; gap:2rem; align-items:center; width:100%; }
+.hero-text{ flex:1; }
+.hero-media img{ width:100%; max-width:480px; border-radius:14px; box-shadow:0 12px 36px rgba(0,0,0,0.08); }
+
+/* sections */
+.section{ padding:2.5rem 0; }
+.section h3{ color:var(--accent); font-size:1.6rem; margin-bottom:1rem; }
+
+/* gallery */
+.grid-gallery{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; }
+.grid-gallery img{ width:100%; border-radius:10px; display:block; }
+
+/* booking card (integración) */
+.booking-card{ background:var(--card); padding:1.25rem; border-radius:var(--radius); box-shadow:0 8px 30px rgba(0,0,0,0.06); max-width:720px; margin:0 auto; }
+.booking-form{ display:flex; flex-direction:column; gap:0.75rem; }
+.row{ display:flex; flex-direction:column; }
+.row-inline{ display:flex; gap:0.75rem; }
+.row label{ font-weight:600; font-size:.95rem; color:var(--muted); margin-bottom:0.35rem; }
+.booking-form input, .booking-form select, .booking-form textarea{
+  padding:0.7rem 0.9rem; border-radius:10px; border:1px solid #eee; font-size:1rem; background:#fff;
 }
+.btn{ background:var(--accent); color:#fff; border:0; padding:0.8rem; border-radius:10px; cursor:pointer; font-weight:700; }
+.form-msg{ margin-top:.6rem; font-weight:600; color:green; min-height:1.2rem; }
 
-main {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
-section {
-  margin-bottom: 3rem;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-form input, form textarea, form button {
-  margin-bottom: 1rem;
-  padding: 0.8rem;
-  font-size: 1rem;
-}
-
-form button {
-  background: #b33a3a;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-form button:hover {
-  background: #912828;
-}
-
-@media (max-width: 600px) {
-  .studio-title {
-    font-size: 2rem;
-  }
+/* responsive */
+@media(max-width:840px){
+  .hero-inner{ flex-direction:column; text-align:center; }
+  .row-inline{ flex-direction:column; }
+  .nav{ flex-direction:row; }
 }
