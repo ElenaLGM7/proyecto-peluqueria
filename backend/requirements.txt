@@ -3,5 +3,3 @@ uvicorn[standard]
 sqlmodel
 python-dotenv
 psycopg-binary
-aiofiles
-python-multipart
