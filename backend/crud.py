@@ -1,23 +1,13 @@
-# backend/app/crud.py
 from sqlmodel import Session, select
+from .models import Booking
 from .database import engine
-from .models import Booking, Contact
 
-def create_booking(payload: Booking) -> Booking:
-    with Session(engine) as session:
-        session.add(payload)
-        session.commit()
-        session.refresh(payload)
-        return payload
+def create_booking(session: Session, booking: Booking):
+    session.add(booking)
+    session.commit()
+    session.refresh(booking)
+    return booking
 
-def list_bookings(limit: int = 200):
-    with Session(engine) as session:
-        stmt = select(Booking).order_by(Booking.date, Booking.time).limit(limit)
-        return session.exec(stmt).all()
-
-def create_contact(payload: Contact) -> Contact:
-    with Session(engine) as session:
-        session.add(payload)
-        session.commit()
-        session.refresh(payload)
-        return payload
+def list_bookings_by_date(session: Session, date: str):
+    stmt = select(Booking).where(Booking.date == date).order_by(Booking.time)
+    return session.exec(stmt).all()
