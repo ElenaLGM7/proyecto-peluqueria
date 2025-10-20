@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background: #f5ebe0; 
+  background: #f5ebe0;
   color: #333;
   margin: 0;
   padding: 0;
@@ -34,7 +34,6 @@ body {
   border-radius: 10px;
 }
 
-/* Formulario de reserva */
 .formulario-reserva {
   max-width: 500px;
   margin: 30px auto;
