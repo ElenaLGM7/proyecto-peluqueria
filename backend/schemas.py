@@ -1,16 +1,31 @@
-from pydantic import BaseModel, constr, EmailStr
-from typing import Optional
+from pydantic import BaseModel
 from datetime import datetime
 
-class BookingCreate(BaseModel):
-    name: constr(min_length=1)
-    phone: constr(min_length=6)
-    email: Optional[EmailStr] = None
-    service: constr(min_length=1)
-    date: constr(min_length=10)  # YYYY-MM-DD
-    time: constr(min_length=4)   # HH:MM
-    notes: Optional[str] = None
+class ServicioBase(BaseModel):
+    nombre: str
+    descripcion: str | None = None
+    precio: float
 
-class BookingRead(BookingCreate):
+class ServicioCreate(ServicioBase):
+    pass
+
+class Servicio(ServicioBase):
     id: int
-    created_at: datetime
+    class Config:
+        orm_mode = True
+
+
+class CitaBase(BaseModel):
+    nombre_cliente: str
+    telefono: str | None = None
+    servicio_id: int
+
+class CitaCreate(CitaBase):
+    pass
+
+class Cita(CitaBase):
+    id: int
+    fecha: datetime
+    servicio: Servicio
+    class Config:
+        orm_mode = True
