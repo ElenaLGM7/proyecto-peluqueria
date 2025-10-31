@@ -1,13 +1,24 @@
-from sqlmodel import Session, select
-from .models import Booking
-from .database import engine
+from sqlalchemy.orm import Session
+import models, schemas
 
-def create_booking(session: Session, booking: Booking):
-    session.add(booking)
-    session.commit()
-    session.refresh(booking)
-    return booking
+# -------- SERVICIOS --------
+def get_servicios(db: Session):
+    return db.query(models.Servicio).all()
 
-def list_bookings_by_date(session: Session, date: str):
-    stmt = select(Booking).where(Booking.date == date).order_by(Booking.time)
-    return session.exec(stmt).all()
+def create_servicio(db: Session, servicio: schemas.ServicioCreate):
+    db_servicio = models.Servicio(**servicio.dict())
+    db.add(db_servicio)
+    db.commit()
+    db.refresh(db_servicio)
+    return db_servicio
+
+# -------- CITAS --------
+def get_citas(db: Session):
+    return db.query(models.Cita).all()
+
+def create_cita(db: Session, cita: schemas.CitaCreate):
+    db_cita = models.Cita(**cita.dict())
+    db.add(db_cita)
+    db.commit()
+    db.refresh(db_cita)
+    return db_cita
