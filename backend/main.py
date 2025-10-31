@@ -1,8 +1,8 @@
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
-from database import SessionLocal, engine, Base
-import crud, schemas, models  # 👈 sin el prefijo "backend."
+from .database import SessionLocal, engine, Base
+from . import crud, schemas, models
 
 # Crear las tablas en la base de datos (si no existen)
 Base.metadata.create_all(bind=engine)
