@@ -1,55 +1,212 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brillo y Estilo - Demo Peluquería</title>
-<link rel="stylesheet" href="styles.css">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Brillo & Estilos — Peluquería</title>
+
+  <!-- Fuentes elegantes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Aquí enlazas tu main.js (separado) -->
+  <script defer src="main.js"></script>
 </head>
 <body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <h1 class="brand-title">Brillo &amp; Estilos</h1>
+        <p class="brand-sub">Salón · Beauty Studio</p>
+      </div>
 
-<header>
-  <h1 class="titulo">Brillo y Estilo</h1>
-</header>
+      <nav class="nav">
+        <a href="#servicios">Servicios</a>
+        <a href="#galeria">Galería</a>
+        <a href="#tarifas">Tarifas</a>
+        <a href="#reservas" class="btn-outline">Reservar</a>
+      </nav>
+    </div>
+  </header>
 
-<section class="galeria">
-  <h2>Nuestros trabajos</h2>
-  <div class="imagenes">
-    <img src="Frontend/corte pelo.jpg" alt="Corte">
-    <img src="Frontend/tinte pelo.jpg" alt="Color">
-    <img src="https://via.placeholder.com/300x200?text=Peinado" alt="Peinado">
-  </div>
-</section>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <h2>Bienvenida a un espacio donde cuidarte es un arte</h2>
+          <p class="lead">Tratamientos personalizados, coloración experta y estilismo profesional en un ambiente cálido y femenino.</p>
+          <div class="hero-ctas">
+            <a class="btn-primary" href="#reservas">Reservar cita</a>
+            <a class="btn-ghost" href="#servicios">Ver servicios</a>
+          </div>
+        </div>
 
-<section class="formulario-reserva">
-  <h2>Reserva tu cita</h2>
-  <form id="reservaForm">
-    <input type="text" name="nombre" placeholder="Nombre" required>
-    <input type="email" name="correo" placeholder="Correo" required>
-    <input type="tel" name="telefono" placeholder="Teléfono">
-    <input type="date" name="fecha" required>
-    <select name="hora" required>
-      <option value="">Selecciona hora</option>
-      <option value="10:00">10:00</option>
-      <option value="11:00">11:00</option>
-      <option value="12:00">12:00</option>
-      <option value="13:00">13:00</option>
-      <option value="16:00">16:00</option>
-      <option value="17:00">17:00</option>
-      <option value="18:00">18:00</option>
-    </select>
-    <select name="servicio" required>
-      <option value="">Selecciona servicio</option>
-      <option value="Corte">Corte</option>
-      <option value="Color">Color</option>
-      <option value="Peinado">Peinado</option>
-    </select>
-    <button type="submit">Reservar</button>
-  </form>
-  <div id="mensajeConfirmacion" class="mensaje"></div>
-</section>
+        <div class="hero-card">
+          <div class="card-inner">
+            <h3 class="card-title">Reserva rápida</h3>
+            <p class="muted">Rellena el formulario para pedir una cita. Confirmación en pantalla y por correo si está configurado.</p>
 
-<script src="main.js"></script>
+            <!-- FORM: el JS se encargará de enviar JSON al backend. -->
+            <form id="reserve-form" class="reserve-form" data-endpoint="/citas" novalidate>
+              <label>
+                <span>Nombre</span>
+                <input type="text" name="nombre_cliente" id="nombre_cliente" required placeholder="Ej. María López" />
+              </label>
+
+              <label>
+                <span>Teléfono</span>
+                <input type="tel" name="telefono" id="telefono" placeholder="+34 6xx xxx xxx" />
+              </label>
+
+              <label>
+                <span>Servicio</span>
+                <select name="servicio_id" id="servicio_id" required>
+                  <option value="">Selecciona un servicio</option>
+                  <!-- Tu main.js puede rellenar estas opciones con GET /servicios -->
+                </select>
+              </label>
+
+              <label>
+                <span>Fecha y hora</span>
+                <input type="datetime-local" name="fecha" id="fecha" required />
+              </label>
+
+              <label>
+                <span>Notas (opcional)</span>
+                <textarea name="notas" id="notas" rows="3" placeholder="Ej. raíz, sin amoniaco..."></textarea>
+              </label>
+
+              <div class="form-actions">
+                <button type="submit" class="btn-primary">Pedir cita</button>
+                <button type="reset" class="btn-ghost">Limpiar</button>
+              </div>
+
+              <div id="reserve-msg" class="reserve-msg" aria-live="polite" hidden></div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios" class="section services-section">
+      <div class="container">
+        <h2 class="section-title">Nuestros servicios</h2>
+        <p class="section-sub">Cortes, color, tratamientos y asesoría personalizada.</p>
+
+        <div id="services-grid" class="services-grid">
+          <!-- Las tarjetas de servicio se inyectan desde main.js o puedes ponerlas fijas -->
+          <!-- Ejemplo estático (puedes repetir / sustituir): -->
+          <article class="service-card">
+            <h3 class="service-name">Corte clásico</h3>
+            <p class="service-desc">Corte adaptado a tu estilo con lavado y peinado.</p>
+            <div class="service-meta">
+              <span class="service-time">45 min</span>
+              <span class="service-price">30 €</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section id="galeria" class="section gallery-section">
+      <div class="container">
+        <h2 class="section-title">Galería</h2>
+        <p class="section-sub">Algunos de nuestros trabajos (imágenes de stock para la demo).</p>
+
+        <div class="gallery-grid">
+          <figure class="gallery-item"><img src="assets/stock-1.jpg" alt="Ejemplo de peinado" /></figure>
+          <figure class="gallery-item"><img src="assets/stock-2.jpg" alt="Color y brillo" /></figure>
+          <figure class="gallery-item"><img src="assets/stock-3.jpg" alt="Tratamiento capilar" /></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- TARIFAS -->
+    <section id="tarifas" class="section tarifs-section">
+      <div class="container">
+        <h2 class="section-title">Tarifas</h2>
+        <p class="section-sub">Planes pensados para todas tus necesidades.</p>
+
+        <div class="tariffs-grid">
+          <div class="tariff-card">
+            <h3>Plan Básico</h3>
+            <p class="tariff-price">Desde 20 €</p>
+            <ul>
+              <li>Corte</li>
+              <li>Lavado</li>
+            </ul>
+          </div>
+
+          <div class="tariff-card highlighted">
+            <h3>Plan Estándar</h3>
+            <p class="tariff-price">Desde 45 €</p>
+            <ul>
+              <li>Corte + Peinado</li>
+              <li>Tratamiento brillo</li>
+            </ul>
+          </div>
+
+          <div class="tariff-card">
+            <h3>Plan Premium</h3>
+            <p class="tariff-price">Desde 80 €</p>
+            <ul>
+              <li>Tinte completo</li>
+              <li>Asesoría de estilo</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section contact-section">
+      <div class="container contact-grid">
+        <div class="contact-info card">
+          <h3>Contacto</h3>
+          <p>Teléfono: <a href="tel:+34600000000">+34 600 000 000</a></p>
+          <p>Dirección: Calle Ficticia 1, Ciudad</p>
+          <p>Horario: Lun–Sáb 9:00–20:00</p>
+        </div>
+
+        <div class="contact-form card">
+          <h3>Escríbenos</h3>
+          <form id="contact-form" data-endpoint="/contact" novalidate>
+            <label><span>Nombre</span><input name="name" required /></label>
+            <label><span>Email</span><input type="email" name="email" required /></label>
+            <label><span>Mensaje</span><textarea name="message" rows="4" required></textarea></label>
+            <div class="form-actions">
+              <button type="submit" class="btn-primary">Enviar</button>
+            </div>
+            <div id="contact-msg" class="reserve-msg" aria-live="polite" hidden></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Brillo &amp; Estilos — Demo • Diseñado por Elena</p>
+      <div class="social">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="Facebook">FB</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Toque pequeño: año dinámico.
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Nota: el envío y la carga dinámica de servicios deben manejarse en main.js
+    // Ejemplo: cargar /servicios y rellenar select#servicio_id
+  </script>
 </body>
 </html>
