@@ -4,20 +4,22 @@ from sqlalchemy.orm import Session
 from backend.database import SessionLocal, engine, Base
 from backend import crud, schemas, models
 
+# Crear las tablas en la base de datos (si no existen)
 Base.metadata.create_all(bind=engine)
 
+# Inicialización de la aplicación FastAPI
 app = FastAPI(title="API Peluquería")
 
-# CORS para permitir el frontend
+# Configuración de CORS (permite conexión con el frontend)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # En producción: cambia esto al dominio de tu frontend
+    allow_origins=["*"],  # ⚠️ En producción, cambia "*" por el dominio de tu frontend
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Dependencia para la DB
+# Dependencia de base de datos
 def get_db():
     db = SessionLocal()
     try:
@@ -52,3 +54,4 @@ def create_cita(cita: schemas.CitaCreate, db: Session = Depends(get_db)):
 @app.get("/citas", response_model=list[schemas.Cita])
 def get_citas(db: Session = Depends(get_db)):
     return crud.get_citas(db)
+
