@@ -1,24 +1,22 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, String, Text
 from database import Base
-from datetime import datetime
+
 
 class Servicio(Base):
     __tablename__ = "servicios"
-     __table_args__ = {'extend_existing': True}  # 👈 añade esta línea
+    __table_args__ = {'extend_existing': True}  # ✅ evita conflictos si ya existe
 
     id = Column(Integer, primary_key=True, index=True)
-    nombre = Column(String, nullable=False)
-    descripcion = Column(String)
-    precio = Column(Float, nullable=False)
+    nombre = Column(String(100), nullable=False)
+    descripcion = Column(Text, nullable=True)
+    precio = Column(Integer, nullable=False)
 
-class Cita(Base):
-    __tablename__ = "citas"
+
+class Contacto(Base):
+    __tablename__ = "contactos"
+    __table_args__ = {'extend_existing': True}
 
     id = Column(Integer, primary_key=True, index=True)
-    nombre_cliente = Column(String, nullable=False)
-    telefono = Column(String)
-    fecha = Column(DateTime, default=datetime.utcnow)
-    servicio_id = Column(Integer, ForeignKey("servicios.id"))
-
-    servicio = relationship("Servicio")
+    nombre = Column(String(100), nullable=False)
+    email = Column(String(100), nullable=False)
+    mensaje = Column(Text, nullable=False)
