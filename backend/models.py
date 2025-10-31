@@ -1,15 +1,23 @@
-# models.py
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey
+from sqlalchemy.orm import relationship
+from database import Base
 from datetime import datetime
-from .database import Base
 
-class Reserva(Base):
-    __tablename__ = "reservas"
+class Servicio(Base):
+    __tablename__ = "servicios"
 
     id = Column(Integer, primary_key=True, index=True)
     nombre = Column(String, nullable=False)
-    email = Column(String, nullable=False)
-    fecha = Column(String, nullable=False)
-    hora = Column(String, nullable=False)
-    mensaje = Column(String, nullable=True)
-    creada_en = Column(DateTime, default=datetime.utcnow)
+    descripcion = Column(String)
+    precio = Column(Float, nullable=False)
+
+class Cita(Base):
+    __tablename__ = "citas"
+
+    id = Column(Integer, primary_key=True, index=True)
+    nombre_cliente = Column(String, nullable=False)
+    telefono = Column(String)
+    fecha = Column(DateTime, default=datetime.utcnow)
+    servicio_id = Column(Integer, ForeignKey("servicios.id"))
+
+    servicio = relationship("Servicio")
