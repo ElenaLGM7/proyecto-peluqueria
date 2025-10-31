@@ -5,6 +5,7 @@ from datetime import datetime
 
 class Servicio(Base):
     __tablename__ = "servicios"
+     __table_args__ = {'extend_existing': True}  # 👈 añade esta línea
 
     id = Column(Integer, primary_key=True, index=True)
     nombre = Column(String, nullable=False)
