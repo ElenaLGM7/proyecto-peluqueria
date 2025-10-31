@@ -1,32 +1,25 @@
-import sys
-import os
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
+from database import SessionLocal, engine, Base
+import crud, schemas, models  # 👈 sin el prefijo "backend."
 
-# --- 🔧 Asegurar que Python reconoce la carpeta 'backend' ---
-sys.path.append(os.path.join(os.path.dirname(__file__), "backend"))
-
-# --- Importaciones internas ---
-from backend.database import SessionLocal, engine, Base
-from backend import crud, schemas, models
-
-# --- Crear tablas si no existen ---
+# Crear las tablas en la base de datos (si no existen)
 Base.metadata.create_all(bind=engine)
 
-# --- Inicializar aplicación FastAPI ---
+# Inicialización de la aplicación FastAPI
 app = FastAPI(title="API Peluquería")
 
-# --- Configurar CORS ---
+# Configuración de CORS (permite conexión con el frontend)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # ⚠️ Cambia esto por tu dominio en producción
+    allow_origins=["*"],  # ⚠️ En producción, cambia "*" por el dominio de tu frontend
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# --- Dependencia de base de datos ---
+# Dependencia de base de datos
 def get_db():
     db = SessionLocal()
     try:
@@ -34,7 +27,10 @@ def get_db():
     finally:
         db.close()
 
-# --- Rutas principales ---
+# -----------------------------
+# RUTAS PRINCIPALES
+# -----------------------------
+
 @app.get("/")
 def read_root():
     return {"message": "API de Peluquería funcionando correctamente"}
