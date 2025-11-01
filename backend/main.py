@@ -16,7 +16,7 @@ app = FastAPI(title="API Peluquería")
 # Configuración de CORS (permite conexión con el frontend)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # ⚠️ En producción, cambia "*" por el dominio de tu frontend
+    allow_origins=["https://brilloyestilosalondebelleza.netlify.app/"],  # ⚠️ En producción, cambia "*" por el dominio de tu frontend
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
