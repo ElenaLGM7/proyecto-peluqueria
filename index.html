@@ -3,73 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Brillo y Estilo - Salón de belleza y estética. Tu lugar para brillar con confianza." />
-  <title>Brillo y Estilo | Salón de Belleza</title>
+  <title>Brillo & Estilo - Salón de Belleza</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header>
-    <h1>Brillo y Estilo</h1>
-    <nav>
-      <ul>
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#nosotros">Nosotros</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
-    </nav>
+    <h1>💖 Brillo & Estilo</h1>
+    <p>Tu salón de belleza en confianza, elegancia y estilo.</p>
   </header>
 
-  <section id="inicio" class="hero">
-    <div class="hero-content">
-      <h2>Tu belleza, nuestro arte</h2>
-      <p>En Brillo y Estilo, realzamos tu belleza natural con los mejores tratamientos.</p>
-      <a href="#contacto" class="btn">Reserva tu cita</a>
-    </div>
-  </section>
+  <main>
+    <!-- 🌸 Sección de servicios -->
+    <section class="servicios">
+      <h2>Servicios y Precios</h2>
+      <ul id="listaServicios">
+        <li>Cargando servicios...</li>
+      </ul>
+      <p class="total">💰 Total estimado: <span id="total">0.00 €</span></p>
+    </section>
 
-  <section id="servicios" class="section">
-    <h2>Nuestros servicios</h2>
-    <div class="services">
-      <div class="service-card">
-        <h3>Peluquería</h3>
-        <p>Cortes, peinados y tratamientos capilares personalizados para ti.</p>
-      </div>
-      <div class="service-card">
-        <h3>Estética</h3>
-        <p>Manicura, pedicura, depilación y más servicios para tu cuidado diario.</p>
-      </div>
-      <div class="service-card">
-        <h3>Maquillaje</h3>
-        <p>Maquillaje profesional para bodas, eventos o sesiones de fotos.</p>
-      </div>
-    </div>
-  </section>
+    <!-- 💅 Sección de cita -->
+    <section class="cita">
+      <h2>Reserva tu cita</h2>
+      <form id="reservaForm">
+        <label>Nombre:
+          <input type="text" name="nombre" required>
+        </label>
+        <label>Correo electrónico:
+          <input type="email" name="correo" required>
+        </label>
+        <label>Teléfono:
+          <input type="tel" name="telefono" required>
+        </label>
+        <label>Fecha:
+          <input type="date" name="fecha" required>
+        </label>
+        <label>Hora:
+          <input type="time" name="hora" required>
+        </label>
 
-  <section id="nosotros" class="section">
-    <h2>Sobre nosotros</h2>
-    <p>Somos un equipo de profesionales apasionados por la belleza y el bienestar. En nuestro salón, cada detalle cuenta para ofrecerte una experiencia única y personalizada.</p>
-  </section>
+        <button type="submit">💖 Reservar cita</button>
+      </form>
 
-  <section id="contacto" class="section">
-    <h2>Contáctanos</h2>
-    <form id="contact-form" action="https://formspree.io/f/mvgqarrr" method="POST">
-      <label for="nombre">Nombre</label>
-      <input type="text" id="nombre" name="nombre" required />
-
-      <label for="email">Correo electrónico</label>
-      <input type="email" id="email" name="email" required />
-
-      <label for="mensaje">Mensaje</label>
-      <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
-
-      <button type="submit" class="btn">Enviar</button>
-    </form>
-    <p id="form-message"></p>
-  </section>
+      <div id="mensajeConfirmacion" class="mensaje"></div>
+    </section>
+  </main>
 
   <footer>
-    <p>© 2025 Brillo y Estilo - Todos los derechos reservados</p>
+    <p>© 2025 Brillo & Estilo · Hecho con 💕 por Elena Guardia</p>
   </footer>
 
   <script src="main.js"></script>
