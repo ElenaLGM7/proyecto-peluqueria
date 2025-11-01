@@ -53,6 +53,14 @@ def create_servicio(servicio: schemas.ServicioCreate, db: Session = Depends(get_
 def create_cita(cita: schemas.CitaCreate, db: Session = Depends(get_db)):
     return crud.create_cita(db, cita)
 
+from .utils import notify_new_booking
+
+@app.post("/citas", response_model=schemas.Cita)
+def create_cita(cita: schemas.CitaCreate, db: Session = Depends(get_db)):
+    nueva_cita = crud.create_cita(db, cita)
+    notify_new_booking(cita.nombre, cita.correo, cita.servicio, cita.fecha, cita.hora)
+    return nueva_cita
+
 # 📅 Ver citas
 @app.get("/citas", response_model=list[schemas.Cita])
 def get_citas(db: Session = Depends(get_db)):
