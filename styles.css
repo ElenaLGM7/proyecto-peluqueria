@@ -1,192 +1,188 @@
-/* ------------------------------
-   ESTILOS GENERALES
------------------------------- */
+:root {
+  --color-principal: #f9c5d1;
+  --color-secundario: #f8a1b2;
+  --color-texto: #333;
+  --color-blanco: #fff;
+  --sombra: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #fffafc;
-  color: #333;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-principal);
+  color: var(--color-texto);
+}
+
+/* HEADER */
+header {
+  background-color: var(--color-secundario);
+  color: var(--color-blanco);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  box-shadow: var(--sombra);
+}
+
+header h1 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
   margin: 0;
   padding: 0;
 }
 
-header {
-  background: linear-gradient(135deg, #e1a6c9, #f8cdd6);
-  text-align: center;
-  padding: 2rem 1rem;
-  color: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+nav a {
+  text-decoration: none;
+  color: var(--color-blanco);
+  font-weight: 500;
+  transition: 0.3s;
 }
 
-header h1 {
-  font-size: 2.2rem;
-  margin-bottom: 0.3rem;
+nav a:hover {
+  text-decoration: underline;
 }
 
-header p {
-  font-size: 1rem;
-  opacity: 0.9;
-}
-
-/* ------------------------------
-   HERO SECTION
------------------------------- */
+/* HERO */
 .hero {
-  position: relative;
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-}
-
-.hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(70%);
-  transition: transform 0.6s ease;
-}
-
-.hero:hover img {
-  transform: scale(1.05);
-}
-
-.hero .overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #fff;
+  background: url('https://images.unsplash.com/photo-1600334129128-685c52b6f07a?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  background: rgba(0, 0, 0, 0.35);
-  padding: 1rem 2rem;
-  border-radius: 10px;
+  color: var(--color-blanco);
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
 }
 
 .hero h2 {
-  margin: 0;
-  font-size: 1.8rem;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .hero p {
-  margin: 0.5rem 0 0;
-}
-
-/* ------------------------------
-   FORMULARIO DE RESERVAS
------------------------------- */
-.reserva {
-  background: white;
-  max-width: 650px;
-  margin: 2.5rem auto;
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-.reserva h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: #b25085;
-}
-
-.campo, .campo-doble {
+  font-size: 1.2rem;
   margin-bottom: 1rem;
 }
 
-.campo label, .campo-doble label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #555;
+.btn {
+  background-color: var(--color-secundario);
+  color: var(--color-blanco);
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s;
 }
 
-.campo input, .campo-doble input {
+.btn:hover {
+  background-color: #f67c93;
+}
+
+/* SECCIONES */
+.section {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #222;
+}
+
+/* SERVICIOS */
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
+  background-color: var(--color-blanco);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: var(--sombra);
+  transition: transform 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-card h3 {
+  color: var(--color-secundario);
+}
+
+/* FORMULARIO */
+form {
+  background-color: var(--color-blanco);
+  padding: 2rem;
+  border-radius: 15px;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: var(--sombra);
+}
+
+form label {
+  display: block;
+  text-align: left;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+form input,
+form textarea {
   width: 100%;
   padding: 0.7rem;
+  margin-bottom: 1rem;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
 }
 
-.campo-doble {
-  display: flex;
-  gap: 1rem;
-}
-
-.lista-servicios {
-  list-style: none;
-  padding: 0;
-}
-
-.lista-servicios li {
-  margin-bottom: 0.4rem;
-}
-
-.lista-servicios label {
-  cursor: pointer;
-}
-
-.lista-servicios input {
-  margin-right: 0.6rem;
-}
-
-.total {
-  text-align: right;
-  font-size: 1.2rem;
-  margin-top: 1rem;
-}
-
-.btn-reservar {
-  display: block;
-  width: 100%;
-  padding: 0.9rem;
-  background: linear-gradient(135deg, #e07b9c, #d76da6);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.btn-reservar:hover {
-  background: linear-gradient(135deg, #d76da6, #c95c96);
-}
-
-/* ------------------------------
-   MENSAJE CONFIRMACIÓN
------------------------------- */
-.mensaje {
-  margin-top: 1rem;
-  padding: 0.7rem;
-  border-radius: 8px;
-  text-align: center;
-  font-weight: 500;
-}
-
-/* ------------------------------
-   FOOTER
------------------------------- */
+/* FOOTER */
 footer {
+  background-color: var(--color-secundario);
+  color: var(--color-blanco);
   text-align: center;
   padding: 1rem;
-  background: #f4e3eb;
-  color: #7a4b69;
-  font-size: 0.9rem;
   margin-top: 3rem;
+  font-size: 0.9rem;
 }
 
-/* ------------------------------
-   RESPONSIVE
------------------------------- */
-@media (max-width: 600px) {
-  .campo-doble {
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  header {
     flex-direction: column;
+    gap: 1rem;
   }
 
-  .hero .overlay {
-    width: 85%;
+  .hero h2 {
+    font-size: 2rem;
   }
 
-  header h1 {
-    font-size: 1.8rem;
+  .hero p {
+    font-size: 1rem;
   }
 }
