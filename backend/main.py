@@ -65,3 +65,27 @@ def create_cita(cita: schemas.CitaCreate, db: Session = Depends(get_db)):
 @app.get("/citas", response_model=list[schemas.Cita])
 def get_citas(db: Session = Depends(get_db)):
     return crud.get_citas(db)
+
+# -----------------------------
+# 🧪 Ruta temporal para probar el correo
+# -----------------------------
+from .utils import try_send_email
+
+@app.get("/test_email")
+def test_email():
+    """
+    Prueba temporal: intenta enviar un correo de prueba.
+    Devuelve el resultado y posibles mensajes de error.
+    """
+    try:
+        ok = try_send_email(
+            subject="Prueba desde Render (API Peluquería)",
+            body="Esto es un test automático para verificar la configuración SMTP.",
+            to="tu_correo@gmail.com"  # ← pon aquí tu correo real
+        )
+        if ok:
+            return {"status": "ok", "message": "Correo enviado correctamente ✅"}
+        else:
+            return {"status": "fail", "message": "No se pudo enviar el correo ❌ (ver logs en Render)"}
+    except Exception as e:
+        return {"status": "error", "detail": str(e)}
