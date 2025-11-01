@@ -1,7 +1,7 @@
 // ==============================
 // CONFIGURACIÓN GENERAL
 // ==============================
-const API_BASE = window.API_BASE || "https://proyecto-peluqueria.onrender.com/"; // ← cambia esta URL por la tuya real
+const API_BASE = window.API_BASE || "https://proyecto-peluqueria.onrender.com";
 
 // ==============================
 // FORMULARIO DE RESERVA
