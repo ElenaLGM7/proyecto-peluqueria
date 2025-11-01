@@ -3,6 +3,8 @@ const mensaje = document.getElementById('mensajeConfirmacion');
 
 // ---- CONFIG ----
 const API_BASE = window.API_BASE || "https://proyecto-peluqueria.onrender.com/"; // <--- cambia aquí por tu URL real
+// ---- CONFIG ----
+const BACKEND_URL = "https://proyecto-peluqueria.onrender.com/reservas";
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
