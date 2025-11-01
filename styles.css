@@ -1,281 +1,192 @@
-/* ==========================
-   Estilo general (rosa empolvado + dorado)
-   Manténlo en un archivo separado: styles.css
-   ========================== */
-
-/* Variables de color */
-:root{
-  --bg: #f7eef1;           /* rosa empolvado claro */
-  --card: #fffafc;
-  --accent: #caa14b;       /* dorado suave */
-  --muted: #8b7b80;        /* gris cálido */
-  --text: #2b2b2b;
-  --soft: #f1e6e8;
-  --glass: rgba(255,255,255,0.6);
-  --radius: 14px;
-  --container-max: 1100px;
+/* ------------------------------
+   ESTILOS GENERALES
+------------------------------ */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fffafc;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
-/* Tipografías */
-*{box-sizing:border-box}
-html,body{
-  height:100%;
-  margin:0;
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  color:var(--text);
-  background: linear-gradient(180deg, var(--bg) 0%, #fff 100%);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+header {
+  background: linear-gradient(135deg, #e1a6c9, #f8cdd6);
+  text-align: center;
+  padding: 2rem 1rem;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Contenedor estándar */
-.container{
-  width:100%;
-  max-width:var(--container-max);
-  margin:0 auto;
-  padding:28px;
+header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.3rem;
 }
 
-/* Header */
-.site-header{
-  background: transparent;
-  position:sticky;
-  top:0;
-  z-index:50;
-  backdrop-filter: blur(6px);
-  padding:18px 0;
-}
-.header-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-}
-.brand-title{
-  font-family: "Playfair Display", serif;
-  font-size:28px;
-  margin:0;
-  color:var(--text);
-  letter-spacing:0.4px;
-}
-.brand-sub{
-  margin:2px 0 0;
-  font-size:13px;
-  color:var(--muted);
+header p {
+  font-size: 1rem;
+  opacity: 0.9;
 }
 
-/* Navegación */
-.nav{
-  display:flex;
-  gap:14px;
-  align-items:center;
-}
-.nav-link{
-  text-decoration:none;
-  color:var(--text);
-  font-weight:600;
-  padding:8px 12px;
-  border-radius:8px;
-}
-.nav-link.cta{
-  background:var(--accent);
-  color:#fff;
-  box-shadow: 0 6px 18px rgba(202,161,75,0.12);
+/* ------------------------------
+   HERO SECTION
+------------------------------ */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
 }
 
-/* Hero */
-.hero{
-  padding:48px 0;
-}
-.hero-inner{
-  display:grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap:28px;
-  align-items:center;
-}
-.hero-text h2{
-  font-family: "Playfair Display", serif;
-  font-size:40px;
-  margin:0 0 12px;
-  color:var(--text);
-}
-.hero-text p{
-  color:var(--muted);
-  margin:0 0 18px;
-  max-width:58ch;
-  line-height:1.5;
-}
-.btn{
-  display:inline-block;
-  text-decoration:none;
-  border:none;
-  cursor:pointer;
-  font-weight:600;
-  padding:12px 18px;
-  border-radius:12px;
-  transition:transform .15s ease, box-shadow .15s ease;
-}
-.btn-primary{
-  background: linear-gradient(180deg,var(--accent), #b7852f);
-  color:#fff;
-  box-shadow: 0 10px 30px rgba(202,161,75,0.12);
-}
-.btn-primary:hover{ transform: translateY(-3px); }
-
-/* Hero image */
-.hero-image img{
-  width:100%;
-  border-radius:var(--radius);
-  box-shadow: 0 20px 50px rgba(43,43,43,0.06);
-  display:block;
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(70%);
+  transition: transform 0.6s ease;
 }
 
-/* Sections */
-.section{
-  padding:36px 0;
+.hero:hover img {
+  transform: scale(1.05);
 }
 
-/* Títulos secciones */
-.section-title{
-  font-family: "Playfair Display", serif;
-  font-size:28px;
-  margin:0 0 8px;
-}
-.section-sub{
-  color:var(--muted);
-  margin:0 0 20px;
-}
-
-/* Servicios - grid de cards */
-.services-grid{
-  display:grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap:18px;
-  margin-top:18px;
-}
-.service-card{
-  background: var(--card);
-  border-radius:14px;
-  padding:18px;
-  box-shadow: 0 8px 30px rgba(11,10,10,0.03);
-  min-height:120px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-.service-title{
-  font-family: "Playfair Display", serif;
-  font-size:18px;
-  margin:0 0 6px;
-}
-.service-desc{
-  color:var(--muted);
-  font-size:14px;
-  margin:0 0 12px;
-}
-.service-price{
-  font-weight:700;
-  color:var(--accent);
-  font-size:16px;
+.hero .overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 1rem 2rem;
+  border-radius: 10px;
 }
 
-/* Galería */
-.gallery-grid{
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:12px;
-  margin-top:18px;
-}
-.gallery-grid img{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  border-radius:12px;
-  display:block;
+.hero h2 {
+  margin: 0;
+  font-size: 1.8rem;
 }
 
-/* Contact / Booking layout */
-.contact-inner{
-  display:grid;
-  grid-template-columns: 1fr 340px;
-  gap:22px;
-  align-items:start;
-}
-.contact-card{
-  background:var(--card);
-  border-radius:14px;
-  padding:22px;
-  box-shadow: 0 8px 30px rgba(11,10,10,0.04);
-}
-.contact-aside .aside-card{
-  background:linear-gradient(180deg,#fff,#fbf9f9);
-  border-radius:12px;
-  padding:14px;
-  margin-bottom:12px;
-  box-shadow: 0 6px 20px rgba(11,10,10,0.03);
+.hero p {
+  margin: 0.5rem 0 0;
 }
 
-/* Form */
-.form-row{
-  margin-bottom:12px;
-}
-.form-row label{
-  display:block;
-  font-size:13px;
-  margin-bottom:6px;
-  color:var(--muted);
-}
-.form-row input,
-.form-row select{
-  width:100%;
-  padding:10px 12px;
-  border-radius:10px;
-  border:1px solid #efe6e8;
-  background: #fff;
-  font-size:14px;
-}
-.form-row.split{ display:flex; gap:12px; }
-.form-row.split > div{ flex:1; }
-
-/* Booking message */
-.booking-message{
-  margin-top:12px;
-  padding:12px;
-  background: linear-gradient(180deg, rgba(202,161,75,0.08), rgba(202,161,75,0.04));
-  border-radius:10px;
-  color:var(--text);
+/* ------------------------------
+   FORMULARIO DE RESERVAS
+------------------------------ */
+.reserva {
+  background: white;
+  max-width: 650px;
+  margin: 2.5rem auto;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-/* Footer */
-.site-footer{
-  margin-top:40px;
-  padding:24px 0;
-  border-top:1px solid rgba(43,43,43,0.04);
-  background:transparent;
-}
-.footer-inner{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-}
-.footer-small{
-  font-size:13px;
-  color:var(--muted);
+.reserva h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #b25085;
 }
 
-/* Responsive */
-@media (max-width: 1000px){
-  .hero-inner{ grid-template-columns: 1fr; text-align:center;}
-  .hero-image{ order:-1; }
-  .services-grid{ grid-template-columns: repeat(2, 1fr); }
-  .contact-inner{ grid-template-columns: 1fr; }
-  .gallery-grid{ grid-template-columns: repeat(2, 1fr); }
+.campo, .campo-doble {
+  margin-bottom: 1rem;
 }
 
-@media (max-width: 560px){
-  .services-grid{ grid-template-columns: 1fr; }
-  .gallery-grid{ grid-template-columns: 1fr; }
-  .brand-title{ font-size:22px; }
-  .hero-text h2{ font-size:28px; }
+.campo label, .campo-doble label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.campo input, .campo-doble input {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.campo-doble {
+  display: flex;
+  gap: 1rem;
+}
+
+.lista-servicios {
+  list-style: none;
+  padding: 0;
+}
+
+.lista-servicios li {
+  margin-bottom: 0.4rem;
+}
+
+.lista-servicios label {
+  cursor: pointer;
+}
+
+.lista-servicios input {
+  margin-right: 0.6rem;
+}
+
+.total {
+  text-align: right;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+.btn-reservar {
+  display: block;
+  width: 100%;
+  padding: 0.9rem;
+  background: linear-gradient(135deg, #e07b9c, #d76da6);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-reservar:hover {
+  background: linear-gradient(135deg, #d76da6, #c95c96);
+}
+
+/* ------------------------------
+   MENSAJE CONFIRMACIÓN
+------------------------------ */
+.mensaje {
+  margin-top: 1rem;
+  padding: 0.7rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* ------------------------------
+   FOOTER
+------------------------------ */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #f4e3eb;
+  color: #7a4b69;
+  font-size: 0.9rem;
+  margin-top: 3rem;
+}
+
+/* ------------------------------
+   RESPONSIVE
+------------------------------ */
+@media (max-width: 600px) {
+  .campo-doble {
+    flex-direction: column;
+  }
+
+  .hero .overlay {
+    width: 85%;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
 }
