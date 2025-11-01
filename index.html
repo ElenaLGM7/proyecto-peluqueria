@@ -13,18 +13,16 @@
   <!-- Estilos -->
   <link rel="stylesheet" href="styles.css">
 
-  <!-- Meta para redes / SEO básico -->
+  <!-- Meta para SEO -->
   <meta name="description" content="Brillo y Estilos — Peluquería y estética. Reserva cita online, consulta tarifas y conoce nuestros servicios.">
 </head>
 <body>
-  <!-- Contenedor principal -->
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
         <h1 class="brand-title">Brillo &amp; Estilos</h1>
         <p class="brand-sub">Salón • Belleza • Confianza</p>
       </div>
-
       <nav class="nav">
         <a href="#inicio" class="nav-link">Inicio</a>
         <a href="#servicios" class="nav-link">Servicios</a>
@@ -35,7 +33,7 @@
   </header>
 
   <main>
-    <!-- Sección Hero / presentación -->
+    <!-- Hero -->
     <section id="inicio" class="hero">
       <div class="container hero-inner">
         <div class="hero-text">
@@ -44,49 +42,27 @@
           <a href="#contacto" class="btn btn-primary">Pedir cita</a>
         </div>
         <div class="hero-image" aria-hidden="true">
-          <!-- Imagen de stock de ejemplo (pon tu propia imagen en /frontend o assets) -->
           <img src="frontend/stock-hair-1.jpg" alt="Salón elegante" />
         </div>
       </div>
     </section>
 
-    <!-- Sección Servicios y Precios (dinámica con JS si lo deseas) -->
+    <!-- Servicios -->
     <section id="servicios" class="section services-section">
       <div class="container">
         <h2 class="section-title">Servicios y Precios</h2>
         <p class="section-sub">Precios orientativos. Reserva online para confirmar disponibilidad.</p>
-
-        <!-- Contenedor que llenará main.js vía fetch /services -->
-        <div id="services-container" class="services-grid">
-          <!-- Si quieres contenido estático de fallback, pégalo aquí: -->
-          <article class="service-card">
-            <h3 class="service-title">Corte de cabello</h3>
-            <p class="service-desc">Adaptado a tu estilo y forma de rostro.</p>
-            <div class="service-price">25 €</div>
-          </article>
-
-          <article class="service-card">
-            <h3 class="service-title">Tinte completo</h3>
-            <p class="service-desc">Coloración profesional y tratamiento de acabado.</p>
-            <div class="service-price">50 €</div>
-          </article>
-
-          <article class="service-card">
-            <h3 class="service-title">Peinado</h3>
-            <p class="service-desc">Peinados para eventos y ocasiones especiales.</p>
-            <div class="service-price">30 €</div>
-          </article>
-
-          <article class="service-card">
-            <h3 class="service-title">Manicura</h3>
-            <p class="service-desc">Cuidado y esmaltado profesional.</p>
-            <div class="service-price">20 €</div>
-          </article>
+        <ul id="listaServicios" class="services-grid">
+          <!-- Se llenará dinámicamente con JS -->
+        </ul>
+        <div class="service-card" style="background: var(--soft); font-weight:600; margin-top:12px;">
+          <h3 class="service-title">Total estimado</h3>
+          <div id="total" class="service-price">0.00 €</div>
         </div>
       </div>
     </section>
 
-    <!-- Galería de ejemplo -->
+    <!-- Galería -->
     <section id="galeria" class="section gallery-section">
       <div class="container">
         <h2 class="section-title">Galería</h2>
@@ -98,35 +74,26 @@
       </div>
     </section>
 
-    <!-- Formulario de contacto / reserva -->
+    <!-- Contacto / Reserva -->
     <section id="contacto" class="section contact-section">
       <div class="container contact-inner">
         <div class="contact-card">
           <h2 class="section-title">Reserva tu cita</h2>
-          <p class="section-sub">Selecciona día y hora. Recibirás confirmación en pantalla y por correo.</p>
+          <p class="section-sub">Selecciona día, hora y servicios. Recibirás confirmación en pantalla.</p>
 
-          <!-- Form: deja action vacío si manejas con JavaScript fetch a /citas -->
-          <form id="booking-form" class="form">
+          <form id="reservaForm" class="form">
             <div class="form-row">
               <label for="nombre">Nombre</label>
               <input id="nombre" name="nombre" type="text" required />
             </div>
-
             <div class="form-row">
               <label for="correo">Correo</label>
               <input id="correo" name="correo" type="email" required />
             </div>
-
             <div class="form-row">
-              <label for="servicio-select">Servicio</label>
-              <select id="servicio-select" name="servicio">
-                <option value="Corte">Corte de cabello</option>
-                <option value="Tinte">Tinte completo</option>
-                <option value="Peinado">Peinado</option>
-                <option value="Manicura">Manicura</option>
-              </select>
+              <label for="telefono">Teléfono</label>
+              <input id="telefono" name="telefono" type="tel" />
             </div>
-
             <div class="form-row split">
               <div>
                 <label for="fecha">Fecha</label>
@@ -137,25 +104,18 @@
                 <input id="hora" name="hora" type="time" step="900" required />
               </div>
             </div>
-
             <div class="form-row">
               <button type="submit" class="btn btn-primary">Solicitar cita</button>
             </div>
-
-            <!-- Mensaje de confirmación elegante -->
-            <div id="booking-message" class="booking-message" aria-live="polite" hidden>
-              Gracias — tu cita ha sido solicitada.
-            </div>
+            <div id="mensajeConfirmacion" class="booking-message" hidden></div>
           </form>
         </div>
 
-        <!-- Tarjetas de info lateral (opcional) -->
         <aside class="contact-aside">
           <div class="aside-card">
             <h4>Horario</h4>
             <p>Lun - Vie: 09:00 - 20:00<br>Sáb: 09:00 - 14:00</p>
           </div>
-
           <div class="aside-card">
             <h4>Dirección</h4>
             <p>C/ Ejemplo 12, Planta 1 — Ciudad</p>
@@ -165,7 +125,6 @@
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>© <strong>Brillo &amp; Estilos</strong> — Diseño elegante y profesional</p>
@@ -173,7 +132,6 @@
     </div>
   </footer>
 
-  <!-- Enlaza tu main.js separado (no incluido aquí) -->
   <script src="main.js" type="module"></script>
 </body>
 </html>
