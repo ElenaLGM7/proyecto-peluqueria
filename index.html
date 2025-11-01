@@ -57,34 +57,45 @@
         <p class="section-sub">Precios orientativos. Reserva online para confirmar disponibilidad.</p>
 
         <!-- Contenedor que llenará main.js vía fetch /services -->
-        <div id="services-container" class="services-grid">
-          <!-- Si quieres contenido estático de fallback, pégalo aquí: -->
-          <article class="service-card">
-            <h3 class="service-title">Corte de cabello</h3>
-            <p class="service-desc">Adaptado a tu estilo y forma de rostro.</p>
-            <div class="service-price">25 €</div>
-          </article>
-
-          <article class="service-card">
-            <h3 class="service-title">Tinte completo</h3>
-            <p class="service-desc">Coloración profesional y tratamiento de acabado.</p>
-            <div class="service-price">50 €</div>
-          </article>
-
-          <article class="service-card">
-            <h3 class="service-title">Peinado</h3>
-            <p class="service-desc">Peinados para eventos y ocasiones especiales.</p>
-            <div class="service-price">30 €</div>
-          </article>
-
-          <article class="service-card">
-            <h3 class="service-title">Manicura</h3>
-            <p class="service-desc">Cuidado y esmaltado profesional.</p>
-            <div class="service-price">20 €</div>
-          </article>
+        <section id="servicios">
+      <h2>Servicios y precios</h2>
+      <form id="serviciosForm">
+        <div class="categoria">
+          <h3>Corte y peinado</h3>
+          <label><input type="checkbox" name="servicio" value="18.00"> Corte de cabello - 18,00 €</label>
+          <label><input type="checkbox" name="servicio" value="25.00"> Corte y peinado - 25,00 €</label>
+          <label><input type="checkbox" name="servicio" value="15.00"> Peinado - 15,00 €</label>
+          <label><input type="checkbox" name="servicio" value="12.00"> Lavado + secado - 12,00 €</label>
         </div>
-      </div>
+
+        <div class="categoria">
+          <h3>Coloración</h3>
+          <label><input type="checkbox" name="servicio" value="30.00"> Tinte completo - 30,00 €</label>
+          <label><input type="checkbox" name="servicio" value="45.00"> Mechas balayage - 45,00 €</label>
+          <label><input type="checkbox" name="servicio" value="35.00"> Reflejos naturales - 35,00 €</label>
+          <label><input type="checkbox" name="servicio" value="25.00"> Matiz o baño de color - 25,00 €</label>
+        </div>
+
+        <div class="categoria">
+          <h3>Tratamientos</h3>
+          <label><input type="checkbox" name="servicio" value="40.00"> Hidratación intensa - 40,00 €</label>
+          <label><input type="checkbox" name="servicio" value="50.00"> Alisado keratina - 50,00 €</label>
+          <label><input type="checkbox" name="servicio" value="35.00"> Reparación capilar - 35,00 €</label>
+        </div>
+
+        <div class="categoria">
+          <h3>Eventos</h3>
+          <label><input type="checkbox" name="servicio" value="60.00"> Recogido de boda - 60,00 €</label>
+          <label><input type="checkbox" name="servicio" value="50.00"> Peinado de fiesta - 50,00 €</label>
+          <label><input type="checkbox" name="servicio" value="70.00"> Pack novia (peinado + prueba) - 70,00 €</label>
+        </div>
+
+        <div id="total">
+          <p><strong>Total estimado:</strong> <span id="totalValor">0,00 €</span></p>
+        </div>
+      </form>
     </section>
+
 
     <!-- Galería de ejemplo -->
     <section id="galeria" class="section gallery-section">
