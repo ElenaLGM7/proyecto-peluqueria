@@ -73,7 +73,7 @@ input[type="submit"]{background:var(--accent); color:#fff; cursor:pointer; font-
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 480px) {
   .hero-inner {
     grid-template-columns: 1fr; /* Hero en una columna en móvil */
     gap: 20px;
@@ -96,4 +96,3 @@ input[type="submit"]{background:var(--accent); color:#fff; cursor:pointer; font-
     padding: 10px 16px;
   }
 }
-
