@@ -32,7 +32,7 @@ html,body{height:100%; margin:0; font-family:"Inter", system-ui, -apple-system, 
 .btn{display:inline-block; text-decoration:none; border:none; cursor:pointer; font-weight:600; padding:12px 18px; border-radius:12px; transition:transform .15s ease, box-shadow .15s ease;}
 .btn-primary{background:linear-gradient(180deg,var(--accent), #b7852f); color:#fff; box-shadow:0 10px 30px rgba(202,161,75,0.12);}
 .btn-primary:hover{transform:translateY(-3px);}
-.hero-image img{width:100%; border-radius:var(--radius); box-shadow:0 20px 50px rgba(43,43,43,0.06); display:block;}
+.hero-image img{width:100%; border-radius:var(--radius); box-shadow:0 20px 50px rgba(43,43,43,0.06); display:block; object-fit:cover;}
 
 /* Sections */
 .section{padding:36px 0;}
@@ -41,58 +41,87 @@ html,body{height:100%; margin:0; font-family:"Inter", system-ui, -apple-system, 
 
 /* Servicios */
 .services-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:18px;}
-.service-card{background: var(--card); border-radius:14px; padding:18px; box-shadow:0 4px 20px rgba(0,0,0,0.04); text-align:center;}
-.service-card h3{margin:0 0 8px; font-size:18px;}
-.service-card p{margin:0 0 12px; color:var(--muted); font-size:14px;}
-.service-price{font-weight:600; font-size:16px; background:var(--soft); border-radius:8px; padding:6px 12px; display:inline-block;}
+.service-card{background: var(--card); border-radius:14px; padding:18px; box-shadow:0 6px 20px rgba(0,0,0,0.03); display:flex; flex-direction:column; align-items:center;}
+.service-card img{width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:var(--radius); margin-bottom:12px;}
+.service-title{font-weight:600; font-size:18px; margin:0 0 6px; text-align:center;}
+.service-desc{font-size:14px; color:var(--muted); text-align:center; margin:0 0 8px;}
+.service-price{background:var(--soft); padding:4px 8px; border-radius:8px; font-weight:600;}
 
-/* Formulario */
-form{display:flex; flex-direction:column; gap:12px; max-width:480px;}
-input, select, textarea{padding:10px 14px; border-radius:10px; border:1px solid #ddd; font-size:14px; width:100%;}
-input[type="submit"]{background:var(--accent); color:#fff; cursor:pointer; font-weight:600; border:none; padding:12px 18px; border-radius:12px;}
-#mensajeConfirmacion{display:none; padding:12px; border-radius:10px; margin-top:8px;}
+/* Formulario de reserva */
+.booking-form{display:flex; flex-direction:column; gap:12px; max-width:500px; margin:0 auto;}
+.booking-form input, .booking-form select{padding:10px 12px; border-radius:8px; border:1px solid #ccc; font-size:14px;}
+.booking-form button{margin-top:8px;}
+#booking-message{display:none; padding:10px 12px; border-radius:8px; font-weight:600; text-align:center;}
 
-/* ==========================
-   RESPONSIVE IMÁGENES Y GRID
-========================== */
+/* ==============================
+   AJUSTES RESPONSIVE
+   ============================== */
 
-/* Hero y otras imágenes generales */
+/* Hero y servicios: limitar tamaño de imágenes y mantener proporción */
 .hero-image img,
 .service-card img {
   width: 100%;
-  height: auto;
-  object-fit: cover; /* Mantiene proporción y recorta si es necesario */
-  border-radius: var(--radius);
+  object-fit: cover;
 }
 
-/* Ajuste del grid de servicios según tamaño de pantalla */
+/* Tablets (768px a 1024px) */
 @media (max-width: 1024px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
   .services-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
+
+  .hero-image img,
+  .service-card img {
+    max-height: 300px;
+  }
 }
 
-@media (max-width: 480px) {
-  .hero-inner {
-    grid-template-columns: 1fr; /* Hero en una columna en móvil */
-    gap: 20px;
+/* Móviles (menos de 768px) */
+@media (max-width: 767px) {
+  .container {
+    padding: 16px;
   }
 
-  .services-grid {
-    grid-template-columns: 1fr; /* Servicios apilados en móvil */
-    gap: 12px;
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 
   .hero-text h2 {
-    font-size: 32px; /* Ajusta tamaño de título */
+    font-size: 28px;
   }
 
-  .section-title {
-    font-size: 24px;
+  .hero-text p {
+    font-size: 14px;
+    max-width: 100%;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .hero-image img,
+  .service-card img {
+    max-height: 220px;
   }
 
   .btn {
-    padding: 10px 16px;
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .section-title {
+    font-size: 22px;
+  }
+
+  .section-sub {
+    font-size: 13px;
   }
 }
