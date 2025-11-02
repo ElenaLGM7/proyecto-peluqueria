@@ -32,7 +32,7 @@ html,body{height:100%; margin:0; font-family:"Inter", system-ui, -apple-system, 
 .btn{display:inline-block; text-decoration:none; border:none; cursor:pointer; font-weight:600; padding:12px 18px; border-radius:12px; transition:transform .15s ease, box-shadow .15s ease;}
 .btn-primary{background:linear-gradient(180deg,var(--accent), #b7852f); color:#fff; box-shadow:0 10px 30px rgba(202,161,75,0.12);}
 .btn-primary:hover{transform:translateY(-3px);}
-.hero-image img{width:100%; border-radius:var(--radius); box-shadow:0 20px 50px rgba(43,43,43,0.06); display:block; object-fit:cover;}
+.hero-image img{width:100%; max-width:500px; border-radius:var(--radius); box-shadow:0 20px 50px rgba(43,43,43,0.06); display:block; object-fit:cover;}
 
 /* Sections */
 .section{padding:36px 0;}
@@ -57,7 +57,7 @@ html,body{height:100%; margin:0; font-family:"Inter", system-ui, -apple-system, 
    AJUSTES RESPONSIVE
    ============================== */
 
-/* Hero y servicios: limitar tamaño de imágenes y mantener proporción */
+/* Hero y servicios: mantener proporción de imágenes */
 .hero-image img,
 .service-card img {
   width: 100%;
