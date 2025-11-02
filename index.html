@@ -17,7 +17,6 @@
   <meta name="description" content="Brillo y Estilos — Peluquería y estética. Reserva cita online, consulta tarifas y conoce nuestros servicios.">
 </head>
 <body>
-  <!-- Contenedor principal -->
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
@@ -35,7 +34,6 @@
   </header>
 
   <main>
-    <!-- Hero -->
     <section id="inicio" class="hero">
       <div class="container hero-inner">
         <div class="hero-text">
@@ -49,19 +47,22 @@
       </div>
     </section>
 
-    <!-- Servicios -->
     <section id="servicios" class="section services-section">
       <div class="container">
         <h2 class="section-title">Servicios y Precios</h2>
-        <p class="section-sub">Selecciona los servicios que deseas. El total se calcula automáticamente.</p>
+        <p class="section-sub">Precios orientativos. Selecciona los que quieras para ver el total.</p>
 
-        <div id="services-container" class="services-grid">
-          <!-- Se llenará dinámicamente con JS -->
+        <ul id="listaServicios" class="services-grid">
+          <!-- Servicios se cargan con JS -->
+        </ul>
+
+        <div class="service-card" style="background: var(--soft); font-weight:600; margin-top:18px;">
+          <h3 class="service-title">Total estimado</h3>
+          <div id="total-precio" class="service-price">0.00 €</div>
         </div>
       </div>
     </section>
 
-    <!-- Galería -->
     <section id="galeria" class="section gallery-section">
       <div class="container">
         <h2 class="section-title">Galería</h2>
@@ -73,14 +74,13 @@
       </div>
     </section>
 
-    <!-- Formulario de cita -->
     <section id="contacto" class="section contact-section">
       <div class="container contact-inner">
         <div class="contact-card">
           <h2 class="section-title">Reserva tu cita</h2>
-          <p class="section-sub">Selecciona los servicios, fecha y hora. Recibirás confirmación en pantalla.</p>
+          <p class="section-sub">Selecciona día y hora. Recibirás confirmación en pantalla y por correo.</p>
 
-          <form id="reservaForm" class="form">
+          <form id="reservaForm" class="form" action="https://formspree.io/f/mvgqarrr" method="POST">
             <div class="form-row">
               <label for="nombre">Nombre</label>
               <input id="nombre" name="nombre" type="text" required />
@@ -107,31 +107,13 @@
               </div>
             </div>
 
-            <div class="form-row">
-              <div class="service-total">
-                Total estimado: <span id="total">0.00 €</span>
-              </div>
-            </div>
+            <div id="mensajeConfirmacion" class="booking-message" hidden></div>
 
             <div class="form-row">
               <button type="submit" class="btn btn-primary">Solicitar cita</button>
             </div>
-
-            <div id="mensajeConfirmacion" class="booking-message" hidden></div>
           </form>
         </div>
-
-        <aside class="contact-aside">
-          <div class="aside-card">
-            <h4>Horario</h4>
-            <p>Lun - Vie: 09:00 - 20:00<br>Sáb: 09:00 - 14:00</p>
-          </div>
-
-          <div class="aside-card">
-            <h4>Dirección</h4>
-            <p>C/ Ejemplo 12, Planta 1 — Ciudad</p>
-          </div>
-        </aside>
       </div>
     </section>
   </main>
@@ -144,16 +126,5 @@
   </footer>
 
   <script src="main.js" type="module"></script>
-  <script>
-    // Navbar translúcida
-    const header = document.querySelector('header');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 20) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    });
-  </script>
 </body>
 </html>
