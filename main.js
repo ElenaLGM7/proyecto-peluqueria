@@ -3,15 +3,15 @@
 // ----------------------------
 const form = document.getElementById('reservaForm');
 const mensaje = document.getElementById('mensajeConfirmacion');
-const listaServicios = document.getElementById('listaServicios');
+const servicesContainer = document.getElementById('services-container');
 const totalElemento = document.getElementById('total');
 let total = 0;
 
-// ⚙️ URL del backend (CÁMBIALA por tu dominio real en Render)
+// ⚙️ URL del backend
 const API_BASE = "https://proyecto-peluqueria.onrender.com";
 
 // ----------------------------
-// ✂️ CARGAR SERVICIOS DISPONIBLES
+// ✂️ CARGAR SERVICIOS DESDE BACKEND
 // ----------------------------
 async function cargarServicios() {
   try {
@@ -19,23 +19,40 @@ async function cargarServicios() {
     if (!res.ok) throw new Error("No se pudieron cargar los servicios");
 
     const servicios = await res.json();
-    listaServicios.innerHTML = "";
+    servicesContainer.innerHTML = "";
 
     servicios.forEach(servicio => {
-      const item = document.createElement("li");
-      item.classList.add("servicio-item");
-      item.innerHTML = `
-        <label>
-          <input type="checkbox" value="${servicio.precio}" data-nombre="${servicio.nombre}">
-          ${servicio.nombre} — ${servicio.precio.toFixed(2)} €
+      const card = document.createElement("div");
+      card.className = "service-card";
+
+      card.innerHTML = `
+        <h3 class="service-title">${servicio.nombre}</h3>
+        <p class="service-desc">${servicio.descripcion || ""}</p>
+        <div class="service-price">${servicio.precio.toFixed(2)} €</div>
+        <label style="display:flex;align-items:center;gap:6px;margin-top:8px;font-size:14px;">
+          <input type="checkbox" data-precio="${servicio.precio}" data-nombre="${servicio.nombre}" class="service-check">
+          Añadir al total
         </label>
       `;
-      listaServicios.appendChild(item);
+      servicesContainer.appendChild(card);
     });
 
-    actualizarTotal();
+    // Añadir total
+    const totalBox = document.createElement("div");
+    totalBox.className = "service-card";
+    totalBox.style.background = "var(--soft)";
+    totalBox.style.fontWeight = "600";
+    totalBox.innerHTML = `
+      <h3 class="service-title">Total estimado</h3>
+      <div id="total-precio" class="service-price">0.00 €</div>
+    `;
+    servicesContainer.appendChild(totalBox);
+
+    // Activar checkboxes
+    const checkboxes = document.querySelectorAll(".service-check");
+    checkboxes.forEach(chk => chk.addEventListener("change", actualizarTotal));
   } catch (error) {
-    listaServicios.innerHTML = `<p class="error">Error al cargar los servicios. Inténtalo más tarde.</p>`;
+    servicesContainer.innerHTML = `<p class="error">Error al cargar los servicios. Inténtalo más tarde.</p>`;
   }
 }
 
@@ -43,19 +60,12 @@ async function cargarServicios() {
 // 💰 CALCULAR TOTAL
 // ----------------------------
 function actualizarTotal() {
-  const checkboxes = listaServicios.querySelectorAll("input[type='checkbox']");
-  total = 0;
-
-  checkboxes.forEach(chk => {
-    if (chk.checked) {
-      total += parseFloat(chk.value);
-    }
-  });
-
+  const seleccionados = document.querySelectorAll(".service-check:checked");
+  let total = 0;
+  seleccionados.forEach(chk => total += parseFloat(chk.dataset.precio));
+  document.getElementById("total-precio").textContent = total.toFixed(2) + " €";
   totalElemento.textContent = total.toFixed(2) + " €";
 }
-
-listaServicios.addEventListener("change", actualizarTotal);
 
 // ----------------------------
 // 📅 ENVIAR FORMULARIO DE CITA
@@ -63,8 +73,7 @@ listaServicios.addEventListener("change", actualizarTotal);
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  // Obtener servicios seleccionados
-  const seleccionados = Array.from(listaServicios.querySelectorAll("input:checked"))
+  const seleccionados = Array.from(document.querySelectorAll(".service-check:checked"))
     .map(chk => chk.dataset.nombre)
     .join(", ");
 
@@ -74,7 +83,7 @@ form.addEventListener('submit', async (e) => {
   }
 
   const datosCita = {
-    nombre: form.nombre.value,
+    nombre_cliente: form.nombre.value,
     correo: form.correo.value,
     telefono: form.telefono.value,
     fecha: form.fecha.value,
@@ -84,17 +93,18 @@ form.addEventListener('submit', async (e) => {
 
   try {
     const res = await fetch(`${API_BASE}/citas`, {
-      method: 'POST',
+      method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(datosCita)
     });
 
     if (!res.ok) throw new Error("Error en la reserva");
 
-    const data = await res.json();
+    await res.json();
     mostrarMensaje("✅ ¡Reserva realizada correctamente!", "ok");
+
     form.reset();
-    listaServicios.querySelectorAll("input:checked").forEach(chk => chk.checked = false);
+    document.querySelectorAll(".service-check:checked").forEach(chk => chk.checked = false);
     actualizarTotal();
 
   } catch (error) {
@@ -103,7 +113,7 @@ form.addEventListener('submit', async (e) => {
 });
 
 // ----------------------------
-// 💬 FUNCIÓN DE MENSAJE VISUAL
+// 💬 MENSAJE VISUAL
 // ----------------------------
 function mostrarMensaje(texto, tipo) {
   mensaje.style.display = "block";
@@ -123,4 +133,7 @@ function mostrarMensaje(texto, tipo) {
 // ----------------------------
 // 🚀 INICIALIZACIÓN
 // ----------------------------
-document.addEventListener("DOMContentLoaded", cargarServicios);
+document.addEventListener("DOMContentLoaded", () => {
+  cargarServicios();
+  actualizarTotal();
+});
